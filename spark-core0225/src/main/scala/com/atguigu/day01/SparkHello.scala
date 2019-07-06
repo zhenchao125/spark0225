@@ -10,7 +10,6 @@ import org.apache.spark.{SparkConf, SparkContext}
   */
 object SparkHello {
     
-    
     def main(args: Array[String]): Unit = {
         // spark程序
         
