@@ -17,11 +17,12 @@ object SparkHello {
         val conf: SparkConf = new SparkConf().setAppName("SparkHello")
         val sc = new SparkContext(conf)
         // 2. 通过 SparkContext得到 RDD
+        
         val lines: RDD[String] = sc.textFile(args(0))
         // 3. 对RDD做各种转换操作
         val resultRDD: RDD[(String, Int)] = lines.flatMap(_.split("\\W+")).map((_, 1)).reduceByKey(_ + _)
         // 4. 对RDD做行动操作
-        val result: Array[(String, Int)] = resultRDD.collect
+        val result: Array[(String, Int)] = resultRDD.collect // 把计算结果拉取到驱动端
         result.foreach(println)
         
         // 5. 停止SparkContext
