@@ -27,21 +27,28 @@ object Practice {
         
         // 5. 分组, 每组按照count进行倒序, 取前3
         val proviceGoupedAdsCount: RDD[(String, Iterable[(String, Int)])] = proviceAdsCount.groupByKey
-        val proviceAdsCountTop3: RDD[(String, List[(String, Int)])] = proviceGoupedAdsCount.map {
+        /*val proviceAdsCountTop3: RDD[(String, List[(String, Int)])] = proviceGoupedAdsCount.map {
             case (pid, adsCountIt) => {
                 val top3 = adsCountIt.toList.sortBy(_._2)(Ordering.Int.reverse).take(3)
                 (pid, top3)
             }
-        }/*.sortBy(_._1.toInt)*/
+        } *//*.sortBy(_._1.toInt)*/
+        val proviceAdsCountTop3: RDD[(String, List[(String, Int)])] = proviceGoupedAdsCount.mapValues(adsCountIt =>
+            adsCountIt.toList.sortBy(_._2)(Ordering.Int.reverse).take(3)
+        )
         proviceAdsCountTop3.collect.foreach(println)
-        
         sc.stop()
-        
     }
 }
 
 /*
-时间戳，省份，城市，用户，广告
+1.	数据结构：时间戳，省份，城市，用户，广告，字段使用空格分割。
+1516609143867 6 7 64 16
+1516609143869 9 4 75 18
+1516609143869 1 7 87 12
+ 	下载数据
+	
+2.	需求: 统计出每一个省份广告被点击次数的 TOP3
 
 => RDD[String]  map
 => RDD[((pid, aid), 1)]	 reduceByKey
