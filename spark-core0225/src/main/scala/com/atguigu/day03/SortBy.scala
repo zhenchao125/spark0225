@@ -18,12 +18,16 @@ object SortBy {
             println(x)
             x
         }).sortBy(x => x)*/
-        implicit val ord: Ordering[User] = (x, y) => x.age - y.age
+        
+        
+        /*implicit val ord: Ordering[User] = new Ordering[User]{
+            override def compare(x: User, y: User): Int = x.age - y.age
+        }*/
         rdd1.sortByKey().collect.foreach(println)
         sc.stop()
-        
-        
     }
 }
 
-case class User(age: Int)
+case class User(age: Int) extends Ordered[User] {
+    override def compare(that: User): Int = this.age - that.age
+}

@@ -12,6 +12,7 @@ object KVDemo {
         val rdd1 = sc.parallelize((1 to 100).map(x => new Random().nextInt(20)))
 //        val rdd1 = sc.parallelize(List(3, 50, 70, 60, 1, 20), 2)
         val rdd2: RDD[(Int, Int)] = rdd1.map((_, 1))
+        
 //        val rdd3: RDD[(Int, Int)] = rdd2.reduceByKey(_ + _)
         val rdd3: RDD[(Int, Iterable[Int])] = rdd2.groupByKey
         rdd3.map{
