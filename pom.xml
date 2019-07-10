@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>spark-core0225</module>
+        <module>spark-sql0225</module>
     </modules>
 
     <dependencies>

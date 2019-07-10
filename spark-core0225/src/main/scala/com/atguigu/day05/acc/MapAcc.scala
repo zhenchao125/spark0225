@@ -9,6 +9,7 @@ class MapAcc extends AccumulatorV2[Int, Map[String, Double]] {
     override def isZero: Boolean = map.isEmpty && count == 0
     
     override def copy(): AccumulatorV2[Int, Map[String, Double]] = {
+        println("copy...")
         val acc = new MapAcc
         acc.map = Map[String, Double]() // 因为Map是不可变的, 所以需要重复赋值一个新的Map
         count = 0

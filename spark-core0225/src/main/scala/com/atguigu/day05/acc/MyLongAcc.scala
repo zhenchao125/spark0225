@@ -11,6 +11,7 @@ class MyLongAcc extends AccumulatorV2[Long, Long] {
     
     // 复制累加器
     override def copy(): AccumulatorV2[Long, Long] = {
+        println("copy...")
         val acc = new MyLongAcc
         acc.sum = 0
         acc
