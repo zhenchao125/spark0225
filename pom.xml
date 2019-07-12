@@ -11,6 +11,7 @@
     <modules>
         <module>spark-core0225</module>
         <module>spark-sql0225</module>
+        <module>spark-streaming0225</module>
     </modules>
 
     <dependencies>
