@@ -6,7 +6,7 @@ import org.apache.spark.sql.types._
 
 /*
 select
- my_remark(age)
+    my_remark(age)
 from user
 
 "总和: ..., 平均值多少: ..., 数量: ...."
