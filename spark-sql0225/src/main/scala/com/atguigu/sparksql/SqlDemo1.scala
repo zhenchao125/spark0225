@@ -21,7 +21,6 @@ object SqlDemo1 {
         val df: DataFrame = rdd.toDF("name", "age")
         // 3. 创建临时表
         df.createOrReplaceTempView("user")
-        
         // 4. 执行sql
         spark.sql(
             """
